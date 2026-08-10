@@ -2,25 +2,50 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
+
+  /* Blejoe brand palette — extracted from live site's Astra theme
+     CSS custom properties (--ast-global-color-*), not the default
+     WP Gutenberg swatches. Verify against real logo file / brand
+     guide before Phase 2 sign-off. */
+  --brand-blue-600: #0067ff;   /* primary CTA / links */
+  --brand-blue-700: #005ee9;   /* hover state */
+  --brand-navy-900: #0f172a;   /* headings, logo truck body */
+  --brand-navy-700: #364151;   /* body text */
+  --brand-sky-100: #e7f6ff;    /* light accent / section bg */
+  --brand-white: #ffffff;
+  --brand-gray-200: #d1dae5;   /* borders */
+  --brand-navy-950: #070614;   /* darkest, footer bg */
+  --brand-ink-800: #222222;
+
+  /* accent pulled from the logo mark itself (orange stripe) */
+  --brand-orange-500: #f4821f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-brand-blue-600: var(--brand-blue-600);
+  --color-brand-blue-700: var(--brand-blue-700);
+  --color-brand-navy-900: var(--brand-navy-900);
+  --color-brand-navy-700: var(--brand-navy-700);
+  --color-brand-sky-100: var(--brand-sky-100);
+  --color-brand-white: var(--brand-white);
+  --color-brand-gray-200: var(--brand-gray-200);
+  --color-brand-navy-950: var(--brand-navy-950);
+  --color-brand-ink-800: var(--brand-ink-800);
+  --color-brand-orange-500: var(--brand-orange-500);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius-card: 1.5rem;
+  --radius-pill: 999px;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }

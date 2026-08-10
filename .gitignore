@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# research scrape of the live WordPress site (Phase 1 discovery notes)
+/docs-live-home.html
+/assets/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
