@@ -13,7 +13,7 @@ export default function AboutPage() {
     <div className="flex min-h-screen flex-col">
       <Nav />
       <main>
-        <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pt-28 sm:px-6 sm:pt-32 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight text-brand-navy-900">About Blejoe Logistics</h1>
           <p className="mt-2 max-w-xl text-brand-navy-700">
             Revolutionizing goods movement with precision and reliability.

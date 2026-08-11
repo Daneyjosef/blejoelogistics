@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { PillButton } from "@/components/ui/PillButton";
 
@@ -16,11 +16,31 @@ const NAV_LINKS = [
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      {/*
+        Fixed (not sticky) so it overlays the full-viewport hero video
+        instead of pushing it down. Transparent at the top of the page,
+        picks up a white background + blur once scrolled. Also note:
+        this must stay OUTSIDE the mobile panel's containing element
+        (see below) since backdrop-blur creates a containing block for
+        position:fixed descendants.
+      */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+          scrolled ? "bg-white/90 shadow-sm backdrop-blur-md" : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-3 sm:px-4 lg:px-5">
           <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
             <Image
               src="/brand/blejoe-logo.png"
@@ -28,7 +48,7 @@ export function Nav() {
               width={160}
               height={54}
               priority
-              className="h-10 w-auto"
+              className="h-10 w-auto drop-shadow-[0_1px_6px_rgba(0,0,0,0.25)]"
             />
           </Link>
 
@@ -55,7 +75,7 @@ export function Nav() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-gray-200 lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-gray-200 bg-white lg:hidden"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>

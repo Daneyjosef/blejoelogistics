@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Truck } from "lucide-react";
 import { PillButton } from "@/components/ui/PillButton";
 import { StatCard } from "@/components/ui/StatCard";
-import { TrustBadge } from "@/components/ui/TrustBadge";
 import { selectedHeadline } from "@/content/hero-copy";
 
 const container = {
@@ -86,66 +85,68 @@ export function Hero({
   heroImageSrc?: string;
   heroVideoSrc?: string;
 }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // As the hero scrolls off, the video shrinks inward and its corners round off.
+  const rawScale = useTransform(scrollYProgress, [0, 1], [1, 0.86]);
+  const rawRadius = useTransform(scrollYProgress, [0, 1], [0, 40]);
+  const scale = reduceMotion ? 1 : rawScale;
+  const borderRadius = reduceMotion ? 0 : rawRadius;
+
   return (
-    <section className="relative overflow-hidden bg-brand-navy-950">
-      <div className="relative h-[560px] w-full overflow-hidden sm:h-[640px] lg:h-[720px]">
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-brand-navy-950">
+      <motion.div
+        style={{ scale, borderRadius }}
+        className="absolute inset-0 h-full w-full origin-center overflow-hidden will-change-transform"
+      >
         <HeroBackground videoSrc={heroVideoSrc} imageSrc={heroImageSrc} />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-950/85 via-brand-navy-950/30 to-brand-navy-950/10" />
+      </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-10 sm:px-6 lg:justify-center lg:px-8 lg:pb-0"
-        >
-          <motion.div variants={item} className="mb-4 w-fit lg:mb-6">
-            <span className="flex items-center gap-2 rounded-pill bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
-              <Truck size={14} /> Logistics &amp; Heavy Equipment Hire
-            </span>
-          </motion.div>
-
-          <motion.h1
-            variants={item}
-            className="max-w-2xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
-          >
-            {selectedHeadline.headline}
-          </motion.h1>
-
-          <motion.p variants={item} className="mt-5 max-w-lg text-base text-white/80 sm:text-lg">
-            {selectedHeadline.subtext}
-          </motion.p>
-
-          <motion.div variants={item} className="mt-8">
-            <PillButton href="/contact" variant="primary">
-              Get a Quote
-            </PillButton>
-          </motion.div>
-
-          {/* Mobile trust line — flows at the bottom, no overlay */}
-          <motion.div variants={item} className="mt-8 lg:hidden">
-            <TrustBadge line="Trusted logistics partner" />
-          </motion.div>
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-24 sm:px-6 lg:justify-center lg:px-8 lg:pb-0"
+      >
+        <motion.div variants={item} className="mb-4 w-fit lg:mb-6">
+          <span className="flex items-center gap-2 rounded-pill bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+            <Truck size={14} /> Logistics &amp; Heavy Equipment Hire
+          </span>
         </motion.div>
 
-        {/* Desktop floating overlay cards */}
-        <motion.div
+        <motion.h1
           variants={item}
-          initial="hidden"
-          animate="show"
-          className="absolute bottom-8 right-6 z-10 hidden lg:block xl:right-10"
+          className="max-w-2xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
         >
-          <StatCard value="XX+" label="Tons delivered" icon={Truck} placeholder />
-        </motion.div>
+          {selectedHeadline.headline}
+        </motion.h1>
 
-        <motion.div
-          variants={item}
-          initial="hidden"
-          animate="show"
-          className="absolute right-6 top-28 z-10 hidden lg:block xl:right-10"
-        >
-          <TrustBadge line="Trusted logistics partner" />
+        <motion.p variants={item} className="mt-5 max-w-lg text-base text-white/80 sm:text-lg">
+          {selectedHeadline.subtext}
+        </motion.p>
+
+        <motion.div variants={item} className="mt-8">
+          <PillButton href="/contact" variant="primary">
+            Get a Quote
+          </PillButton>
         </motion.div>
-      </div>
+      </motion.div>
+
+      {/* Desktop floating stat card */}
+      <motion.div
+        variants={item}
+        initial="hidden"
+        animate="show"
+        className="absolute bottom-8 right-6 z-10 hidden lg:block xl:right-10"
+      >
+        <StatCard value="XX+" label="Tons delivered" icon={Truck} placeholder />
+      </motion.div>
     </section>
   );
 }
