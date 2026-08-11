@@ -12,7 +12,7 @@ export function FloatingCard({ children, className = "", as = "floating" }: Prop
 
   return (
     <div
-      className={`rounded-card border border-white/40 p-5 ${floatClasses} ${className}`}
+      className={`rounded-card border border-white/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${floatClasses} ${className}`}
     >
       {children}
     </div>

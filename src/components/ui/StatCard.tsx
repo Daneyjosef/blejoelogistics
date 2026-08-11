@@ -1,4 +1,5 @@
 import { FloatingCard } from "./FloatingCard";
+import { CountUp } from "./CountUp";
 import type { LucideIcon } from "lucide-react";
 
 type Props = {
@@ -6,9 +7,21 @@ type Props = {
   label: string;
   icon?: LucideIcon;
   placeholder?: boolean;
+  /** When set (and placeholder is false), animates the number counting up on scroll into view. */
+  countTo?: number;
+  prefix?: string;
+  suffix?: string;
 };
 
-export function StatCard({ value, label, icon: Icon, placeholder = false }: Props) {
+export function StatCard({
+  value,
+  label,
+  icon: Icon,
+  placeholder = false,
+  countTo,
+  prefix,
+  suffix,
+}: Props) {
   return (
     <FloatingCard className="w-56">
       <div className="flex items-start gap-3">
@@ -23,7 +36,11 @@ export function StatCard({ value, label, icon: Icon, placeholder = false }: Prop
               placeholder ? "text-brand-navy-700/40" : "text-brand-navy-900"
             }`}
           >
-            {value}
+            {!placeholder && countTo !== undefined ? (
+              <CountUp to={countTo} prefix={prefix} suffix={suffix} />
+            ) : (
+              value
+            )}
           </p>
           <p className="text-sm text-brand-navy-700/80">{label}</p>
           {placeholder && (
