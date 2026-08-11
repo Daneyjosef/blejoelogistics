@@ -62,7 +62,12 @@ export const COVERAGE_LOCATIONS = [
   { name: "Ikeja, Lagos (HQ)", x: 30, y: 62 },
 ];
 
+// tonsDelivered is a rough estimate (not audited data), given as
+// requested: ~30 fleet vehicles x ~15 years, assuming modest average
+// utilization (fleet size grew over time, not constant at 30 for all
+// 15 years). Swap for a real figure if/when one becomes available.
 export const COMPANY_STATS = {
   yearsInOperation: 15,
   fleetVehicles: 30,
+  tonsDelivered: 500000,
 };

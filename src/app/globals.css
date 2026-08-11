@@ -42,6 +42,13 @@
 
   --radius-card: 1.5rem;
   --radius-pill: 999px;
+
+  /* Site content container. Overridden much wider than Tailwind's default
+     80rem so section content runs edge-to-edge (minus the existing px-4/
+     sm:px-6/lg:px-8 gutters) instead of leaving large empty margins on
+     wide viewports — every section/page uses max-w-7xl, so this one
+     token change applies the full-bleed layout site-wide. */
+  --container-7xl: 160rem;
 }
 
 body {

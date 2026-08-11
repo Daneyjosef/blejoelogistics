@@ -6,6 +6,7 @@ import { Truck } from "lucide-react";
 import { PillButton } from "@/components/ui/PillButton";
 import { StatCard } from "@/components/ui/StatCard";
 import { selectedHeadline } from "@/content/hero-copy";
+import { COMPANY_STATS } from "@/content/about-data";
 
 const container = {
   hidden: {},
@@ -145,7 +146,13 @@ export function Hero({
         animate="show"
         className="absolute bottom-8 right-6 z-10 hidden lg:block xl:right-10"
       >
-        <StatCard value="XX+" label="Tons delivered" icon={Truck} placeholder />
+        <StatCard
+          value={`${COMPANY_STATS.tonsDelivered.toLocaleString()}+`}
+          label="Tons delivered"
+          icon={Truck}
+          countTo={COMPANY_STATS.tonsDelivered}
+          suffix="+"
+        />
       </motion.div>
     </section>
   );

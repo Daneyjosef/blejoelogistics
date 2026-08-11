@@ -27,8 +27,8 @@ export function CoverageStats() {
 
       <Reveal className="grid grid-cols-1 gap-5 lg:grid-cols-3" delay={0.1}>
         {/* Map panel */}
-        <div className="relative overflow-hidden rounded-card border border-brand-gray-200 bg-brand-navy-900">
-          <div className="relative h-64 w-full sm:h-80">
+        <div className="relative overflow-hidden rounded-card border border-brand-gray-200 bg-brand-navy-900 lg:col-span-2">
+          <div className="relative h-80 w-full sm:h-96 lg:h-full lg:min-h-[420px]">
             <iframe
               title="Blejoe Logistics — Ikeja, Lagos"
               src={MAP_EMBED_SRC}
@@ -44,13 +44,14 @@ export function CoverageStats() {
         </div>
 
         {/* Stat cards */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 lg:h-full">
           <StatCard
             value={`${COMPANY_STATS.yearsInOperation}+`}
             label="Years in operation"
             icon={Globe}
             countTo={COMPANY_STATS.yearsInOperation}
             suffix="+"
+            className="w-full flex-1 lg:flex lg:flex-col lg:justify-center"
           />
           <StatCard
             value={`${COMPANY_STATS.fleetVehicles}+`}
@@ -58,6 +59,7 @@ export function CoverageStats() {
             icon={Truck}
             countTo={COMPANY_STATS.fleetVehicles}
             suffix="+"
+            className="w-full flex-1 lg:flex lg:flex-col lg:justify-center"
           />
         </div>
       </Reveal>

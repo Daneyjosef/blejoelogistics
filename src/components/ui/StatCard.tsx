@@ -11,6 +11,8 @@ type Props = {
   countTo?: number;
   prefix?: string;
   suffix?: string;
+  /** Overrides the default fixed w-56 — pass "w-full" when the card should fill a grid/flex track. */
+  className?: string;
 };
 
 export function StatCard({
@@ -21,9 +23,10 @@ export function StatCard({
   countTo,
   prefix,
   suffix,
+  className = "w-56",
 }: Props) {
   return (
-    <FloatingCard className="w-56">
+    <FloatingCard className={className}>
       <div className="flex items-start gap-3">
         {Icon && (
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-sky-100 text-brand-blue-600">
