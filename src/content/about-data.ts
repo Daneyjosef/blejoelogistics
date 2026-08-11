@@ -46,7 +46,7 @@ export const TESTIMONIALS = [
 
 export const CONTACT_INFO = {
   address: "18 Adeleke Street off Tinuade Street, Allen Avenue, Ikeja, Lagos",
-  phone: "+234 805 960 820",
+  phone: "0803 596 0820",
   email: "info@blejoelogistics.com",
   hours: [
     { days: "Monday – Friday", time: "9:00 AM – 6:00 PM" },
