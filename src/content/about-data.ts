@@ -61,3 +61,8 @@ export const CONTACT_INFO = {
 export const COVERAGE_LOCATIONS = [
   { name: "Ikeja, Lagos (HQ)", x: 30, y: 62 },
 ];
+
+export const COMPANY_STATS = {
+  yearsInOperation: 15,
+  fleetVehicles: 30,
+};
