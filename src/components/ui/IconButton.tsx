@@ -20,7 +20,7 @@ export function IconButton({ icon: Icon, label, variant = "light", size = "md" }
       type="button"
       aria-label={label}
       title={label}
-      className={`flex shrink-0 items-center justify-center rounded-full shadow-sm transition-transform duration-200 hover:scale-105 ${sizeClasses} ${variantClasses}`}
+      className={`flex shrink-0 touch-manipulation items-center justify-center rounded-full shadow-sm transition-transform duration-200 hover:scale-105 active:scale-90 ${sizeClasses} ${variantClasses}`}
     >
       <Icon size={iconSize} strokeWidth={2} />
     </button>

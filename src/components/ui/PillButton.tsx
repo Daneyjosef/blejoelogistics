@@ -41,7 +41,7 @@ type ButtonProps = BaseProps &
 
 export function PillButton(props: LinkProps | ButtonProps) {
   const { variant = "primary", children, className = "" } = props;
-  const classes = `group inline-flex items-center rounded-pill py-1 text-sm font-semibold tracking-tight transition-colors duration-300 ${variantClasses[variant]} ${className}`;
+  const classes = `group inline-flex touch-manipulation items-center rounded-pill py-1 text-sm font-semibold tracking-tight transition-all duration-300 active:scale-95 ${variantClasses[variant]} ${className}`;
 
   if ("href" in props && props.href) {
     const { href, variant: _v, children: _c, className: _cl, ...rest } = props;

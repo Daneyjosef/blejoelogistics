@@ -51,10 +51,33 @@
   --container-7xl: 160rem;
 }
 
+html {
+  /* Stops vertical pull/scroll from chaining past the page edges into
+     browser-native pull-to-refresh — one of the small things that makes
+     a mobile web page feel like a native app instead of "a website". */
+  overscroll-behavior-y: contain;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  /* Removes the gray flash on tap that reads as "web page", not "app". */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Footer needs extra bottom clearance on mobile so its content (and the
+   dark background it sits on) isn't hidden behind the fixed bottom tab
+   bar + the iOS home-indicator safe area. Reset to normal on lg+, where
+   the tab bar is hidden. */
+.footer-safe-pad {
+  padding-bottom: 3.5rem;
+}
+@media (max-width: 1023px) {
+  .footer-safe-pad {
+    padding-bottom: max(5rem, calc(env(safe-area-inset-bottom) + 4.5rem));
+  }
 }
 
 @keyframes hero-ken-burns {

@@ -36,7 +36,7 @@ export function ServicesGrid() {
             <RevealItem key={service.slug}>
               <Link
                 href={service.href}
-                className="group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-card border border-brand-gray-200 bg-white p-6 text-brand-navy-900 transition-all duration-300 hover:-translate-y-1 hover:bg-brand-sky-100 hover:shadow-lg"
+                className="group relative flex h-full min-h-[220px] touch-manipulation flex-col justify-between overflow-hidden rounded-card border border-brand-gray-200 bg-white p-6 text-brand-navy-900 transition-all duration-300 hover:-translate-y-1 hover:bg-brand-sky-100 hover:shadow-lg active:scale-[0.98]"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-sky-100 text-brand-blue-600">
                   <Icon size={20} />
@@ -56,7 +56,7 @@ export function ServicesGrid() {
         <RevealItem className="sm:col-span-3">
           <Link
             href={featured.href}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-card border border-brand-gray-200 bg-brand-navy-900 p-8 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand-navy-950 hover:shadow-lg sm:flex-row sm:items-center sm:gap-8"
+            className="group relative flex touch-manipulation flex-col justify-between overflow-hidden rounded-card border border-brand-gray-200 bg-brand-navy-900 p-8 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand-navy-950 hover:shadow-lg active:scale-[0.98] sm:flex-row sm:items-center sm:gap-8"
           >
             <div className="flex items-start gap-4 sm:items-center">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">

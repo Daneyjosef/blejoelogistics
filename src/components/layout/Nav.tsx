@@ -74,7 +74,7 @@ export function Nav() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-gray-200 bg-white lg:hidden"
+            className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-full border border-brand-gray-200 bg-white transition-transform duration-150 active:scale-90 lg:hidden"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -112,7 +112,7 @@ export function Nav() {
             type="button"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-gray-200"
+            className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-full border border-brand-gray-200 transition-transform duration-150 active:scale-90"
           >
             <X size={18} />
           </button>
@@ -123,7 +123,7 @@ export function Nav() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-3 text-base font-medium text-brand-navy-900 transition-colors hover:bg-brand-sky-100"
+              className="touch-manipulation rounded-xl px-3 py-3 text-base font-medium text-brand-navy-900 transition-all active:scale-[0.98] active:bg-brand-sky-100 hover:bg-brand-sky-100"
             >
               {link.label}
             </Link>
