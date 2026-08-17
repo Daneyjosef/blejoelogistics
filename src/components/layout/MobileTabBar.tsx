@@ -27,7 +27,7 @@ export function MobileTabBar() {
       className="fixed inset-x-0 bottom-0 z-50 border-t border-brand-gray-200 bg-white/95 backdrop-blur-md lg:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="mx-auto flex max-w-md items-stretch justify-between px-2">
+      <div className="mx-auto flex max-w-md items-stretch justify-between px-1">
         {TABS.map((tab) => {
           const isActive =
             tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);
@@ -36,17 +36,17 @@ export function MobileTabBar() {
             <Link
               key={tab.href}
               href={tab.href}
-              className="flex flex-1 flex-col items-center justify-center gap-1 py-2.5 transition-transform duration-150 active:scale-90"
+              className="flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 transition-transform duration-150 active:scale-90"
             >
               <span
-                className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-200 ${
+                className={`flex h-6 w-6 items-center justify-center rounded-full transition-colors duration-200 ${
                   isActive ? "bg-brand-sky-100 text-brand-blue-600" : "text-brand-navy-700/60"
                 }`}
               >
-                <Icon size={19} strokeWidth={isActive ? 2.4 : 2} />
+                <Icon size={16} strokeWidth={isActive ? 2.4 : 2} />
               </span>
               <span
-                className={`text-[10px] font-medium transition-colors duration-200 ${
+                className={`text-[9px] font-medium transition-colors duration-200 ${
                   isActive ? "text-brand-blue-600" : "text-brand-navy-700/60"
                 }`}
               >

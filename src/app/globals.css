@@ -76,7 +76,7 @@ body {
 }
 @media (max-width: 1023px) {
   .footer-safe-pad {
-    padding-bottom: max(5rem, calc(env(safe-area-inset-bottom) + 4.5rem));
+    padding-bottom: max(4rem, calc(env(safe-area-inset-bottom) + 3.5rem));
   }
 }
 
